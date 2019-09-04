@@ -1,0 +1,97 @@
+
+/////////////Mocks/////////////
+const mainFeaturesMocks = [
+    {
+        id: 1,
+        iconName: 'user-md',
+        Featuretitle: 'See Your Doctor',
+        Featuredescription: 'The convenient way to get care you need from your Doctor.',
+
+    }, {
+        id: 2,
+        iconName: 'medkit',
+        Featuretitle: 'Find Doctor',
+        Featuredescription: 'The fastest way for your child to receive personal medical care from their Pediatrician.',
+
+    }, {
+        id: 3,
+        iconName: 'user-md',
+        Featuretitle: 'See Your Doctor',
+        Featuredescription: 'The convenient way to get care you need from your Doctor.',
+
+    },
+]
+
+/////////////CODE/////////////
+ renderMainFeaturesSection = () => {
+
+        return (
+            <View style={[styles.MainFeaturesSectionContainer, styles.column
+                , {
+                marginBottom: 30
+            }
+
+            ]}>
+                <View style={[styles.MainFeaturesSectionHeading, {
+                    alignContent: 'center'
+                }]}>
+                    <ImageBackground
+                        style={{ width: 400, height: 100, marginTop: 10, }}
+                        source={require('../assets/bg-img.jpg')}
+                    >
+
+                      
+                    </ImageBackground>
+
+
+                    <Text style={{ fontWeight: 'bold', textAlign: "center", fontSize: 25 }}>
+                        HEALTHCARE THE WAY{"\n"}
+                        YOU WANT IT
+
+                    </Text>
+                    <Text style={{ textAlign: "center", color: '#726a84', fontSize: 15, marginVertical: 6, paddingHorizontal: 15 }}>
+                        DocYourWay is primary care, including virtual care where your doctor uses the latest technology to provide healthcare needs for you and your family. Doctors partner with DocYourWay to provide you, their valued patient, with new options for healthcare delivery. With our direct primary care, it’s  simplicity is its genius, where members receive greater value for healthcare dollars
+                    </Text>
+                </View>
+
+                <FlatList
+                    horizontal
+                    pagingEnabled
+                    scrollEnabled
+                    showsHorizontalScrollIndicator={false}
+                    decelerationRate={0}
+                    scrollEventThrottle={16}
+                    snapToAlignment="center"
+                    style={{ height: 280 }}
+                    data={this.props.mainFeaturesData}
+                    keyExtractor={(item, index) => `${item.id}`}
+                    renderItem={({ item }) => this.renderMainFeature(item)}
+                />
+            </View>
+
+        )
+    }
+
+
+
+ renderMainFeature = item => {
+        const { navigation } = this.props;
+        return (
+            <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('Login', item)}>
+                <View style={[styles.column, styles.mainFeatureBox, {
+                    borderWidth: 1, borderColor: '#eff2f6', justifyContent: "center",
+
+                }]}>
+                    <Icon style={[{ fontSize: 50, alignSelf: "center" }]} name={item.iconName}
+                        color="#FA7824" />
+                    <Text style={{ textAlign: 'center', color: '#5b32b4', fontWeight: "bold", fontSize: 22 }}>{item.Featuretitle}</Text>
+                    <Text style={{ textAlign: 'center', color: '#726a84', fontSize: 22 }}>
+                        {item.Featuredescription}
+                    </Text>
+
+                </View>
+
+
+            </TouchableOpacity >
+        )
+    }
